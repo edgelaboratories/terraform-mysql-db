@@ -12,7 +12,7 @@ resource "mysql_database" "this" {
 resource "mysql_user" "this" {
   count = var.plaintext_password != null ? 1 : 0
 
-  user               = var.user
+  user               = local.user
   host               = "%"
   plaintext_password = var.plaintext_password
 }

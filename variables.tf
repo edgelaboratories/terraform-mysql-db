@@ -1,9 +1,9 @@
 variable "database" {
-  description = "Name of the database and the main user."
+  description = "The name of the database"
 }
 
 variable "user" {
-  description = "Name of the main user, none are created when empty"
+  description = "Name of the main user. Defaults to the database name"
   default     = ""
 }
 
@@ -29,4 +29,8 @@ variable "vault_backend_path" {
 variable "vault_db_connection_name" {
   type    = string
   default = null
+}
+
+variable "vault_role_default_ttl" {
+  default = 3600
 }

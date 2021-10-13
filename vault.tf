@@ -52,7 +52,7 @@ resource "vault_database_secret_backend_role" "this" {
     "GRANT ${each.value.grant} ON ${var.database}.* TO '{{name}}'@'%';",
   ]
 
-  default_ttl = 600
+  default_ttl = var.vault_role_default_ttl
 }
 
 data "vault_policy_document" "this" {
