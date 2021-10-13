@@ -10,7 +10,7 @@ resource "mysql_database" "this" {
 }
 
 resource "mysql_user" "this" {
-  count = var.plaintext_password != null ? 0 : 1
+  count = var.plaintext_password != null ? 1 : 0
 
   user               = var.user
   host               = "%"
@@ -18,7 +18,7 @@ resource "mysql_user" "this" {
 }
 
 resource "mysql_grant" "this" {
-  count = var.plaintext_password != null ? 0 : 1
+  count = var.plaintext_password != null ? 1 : 0
 
   user     = mysql_user.this[count.index].user
   host     = "%"
