@@ -1,55 +1,20 @@
 locals {
-  # We can't grant ALL PRIVILEGES ON *.* on RDS
-  # (only on a specific database e.g.: GRANT ALL PRIVILEGES ON forecast.*)
-  # so this define the maximum privileges
-  # we can grant for a user
-  rds_all_privileges = [
-    "ALTER",
-    "ALTER ROUTINE",
-    "CREATE",
-    "CREATE ROUTINE",
-    "CREATE TEMPORARY TABLES",
-    "CREATE USER",
-    "CREATE VIEW",
-    "DELETE",
-    "DROP",
-    "EVENT",
-    "EXECUTE",
-    "INDEX",
-    "INSERT",
-    "LOCK TABLES",
-    "PROCESS",
-    "REFERENCES",
-    "RELOAD",
-    "SELECT",
-    "SHOW DATABASES",
-    "SHOW VIEW",
-    "TRIGGER",
-    "UPDATE",
-  ]
-
   roles = var.vault_backend_path == null ? {} : {
-    "${var.database}-all-privileges" = {
-      grant  = join(", ", local.rds_all_privileges)
-      policy = "all-privileges"
-    }
-    "${var.database}-read-only" = {
-      grant  = "SELECT"
-      policy = "all-privileges"
-    }
+    "all-privileges" = "ALL PRIVILEGES"
+    "read-only"      = "SELECT"
   }
 }
 
 resource "vault_database_secret_backend_role" "this" {
   for_each = local.roles
 
-  name    = each.key
+  name    = "${var.database}-${each.key}"
   backend = var.vault_backend_path
   db_name = var.vault_db_connection_name
 
   creation_statements = [
     "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';",
-    "GRANT ${each.value.grant} ON ${var.database}.* TO '{{name}}'@'%';",
+    "GRANT ${each.value} ON ${var.database}.* TO '{{name}}'@'%';",
   ]
 
   default_ttl = var.vault_role_default_ttl
@@ -67,6 +32,6 @@ data "vault_policy_document" "this" {
 resource "vault_policy" "this" {
   for_each = local.roles
 
-  name   = "${var.vault_backend_path}/${var.database}/${each.value.policy}"
+  name   = "${var.vault_backend_path}/${var.database}/${each.key}"
   policy = data.vault_policy_document.this[each.key].hcl
 }
