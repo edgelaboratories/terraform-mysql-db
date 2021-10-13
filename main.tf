@@ -17,10 +17,10 @@ resource "mysql_user" "this" {
   plaintext_password = var.plaintext_password
 }
 
-resource "mysql_grant" "maestro_maestro" {
+resource "mysql_grant" "this" {
   count = var.plaintext_password != null ? 0 : 1
 
-  user     = mysql_user.this.user
+  user     = mysql_user.this[count.index].user
   host     = "%"
   database = mysql_database.this.name
 
