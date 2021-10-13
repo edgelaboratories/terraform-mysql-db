@@ -29,11 +29,11 @@ locals {
   ]
 
   roles = var.vault_backend_path == null ? {} : {
-    "${var.name}-all-privileges" = {
+    "${var.database}-all-privileges" = {
       grant  = join(", ", local.rds_all_privileges)
       policy = "all-privileges"
     }
-    "${var.name}-read-only" = {
+    "${var.database}-read-only" = {
       grant  = "SELECT"
       policy = "all-privileges"
     }
