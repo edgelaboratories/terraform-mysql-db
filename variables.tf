@@ -8,9 +8,10 @@ variable "user" {
 }
 
 variable "plaintext_password" {
-  type      = string
-  sensitive = true
-  default   = null
+  description = "Required to create the default user."
+  type        = string
+  sensitive   = true
+  default     = null
 }
 
 variable "default_character_set" {
