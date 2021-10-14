@@ -3,5 +3,5 @@ output "database" {
 }
 
 output "user" {
-  value = mysql_user.this.*.name
+  value = var.user
 }
