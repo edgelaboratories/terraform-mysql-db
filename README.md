@@ -6,7 +6,7 @@ In particular:
 
 - It creates a database 👋
 - Optionally, it creates a user named after the database when not specified.
-- Optionally, it create two roles to obtain credentials via Vault:
+- Optionally, it creates two roles to obtain credentials via Vault:
 
     - `${vault_backend_path}/${DBNAME}-all-privileges` with `ALL PRIVILEGES` permissions.
     - `${vault_backend_path}/${DBNAME}-read-only` with `SELECT` permissions.
@@ -20,12 +20,12 @@ In particular:
 module "my_database" {
   source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.1.0"
 
-  database = "my_database"
+  database = "my-database"
 
-  # The database name is used
-  #user = "my_database"
+  # By default, the database name is used
+  # user = "my-database"
 
-  # Optional user, especially when using Vault roles
+  # Optional user password. Not required when using Vault roles
   plaintext_password = "a very hard to guess password"
 
   # Default values are utf8mb4 and utf8mb4_unicode_ci
@@ -33,7 +33,7 @@ module "my_database" {
   default_collation     = "utf8_unicode_ci"
 
   # Optional
-  vault_backend_path       = "mysql/main"
-  vault_db_connection_name = "main"
+  vault_backend_path       = "mysql/my-cluster"
+  vault_db_connection_name = "my-cluster"
 }
 ```
