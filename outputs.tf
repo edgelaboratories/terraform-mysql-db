@@ -3,5 +3,5 @@ output "database" {
 }
 
 output "user" {
-  value = var.user
+  value = local.user
 }
