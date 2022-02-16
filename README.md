@@ -8,11 +8,10 @@ In particular:
 - Optionally, it creates a user named after the database when not specified.
 - Optionally, it creates two roles to obtain credentials via Vault:
 
-    - `${vault_backend_path}/${DBNAME}-all-privileges` with `ALL PRIVILEGES` permissions.
-    - `${vault_backend_path}/${DBNAME}-read-only` with `SELECT` permissions.
+  - `${vault_backend_path}/${DBNAME}-all-privileges` with `ALL PRIVILEGES` permissions.
+  - `${vault_backend_path}/${DBNAME}-read-only` with `SELECT` permissions.
 
 - When the intent is to use Vault, it's recommended to **NOT** provide the `plaintext_password`.
-
 
 ## Usage
 
@@ -35,5 +34,6 @@ module "my_database" {
   # Optional
   vault_backend_path       = "mysql/my-cluster"
   vault_db_connection_name = "my-cluster"
+  vault_role_default_ttl   = 3600
 }
 ```
