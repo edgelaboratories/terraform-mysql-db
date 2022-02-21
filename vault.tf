@@ -16,7 +16,7 @@ resource "vault_database_secret_backend_role" "this" {
     [
       "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';",
       "GRANT ${each.value} ON ${var.database}.* TO '{{name}}'@'%';",
-    ], var.roles_extra_statements[each.key] != null ? var.roles_extra_statements[each.key] : [],
+    ], coalesce(var.roles_extra_statements[each.key], []),
   )
 
   default_ttl = var.vault_role_default_ttl
