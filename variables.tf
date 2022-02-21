@@ -35,3 +35,10 @@ variable "vault_db_connection_name" {
 variable "vault_role_default_ttl" {
   default = 3600
 }
+
+variable "vault_roles_extra_statements" {
+  type = object({
+    all-privileges = optional(list(string)),
+    read-only      = optional(list(string)),
+  })
+}
