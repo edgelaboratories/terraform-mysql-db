@@ -38,7 +38,7 @@ module "my_database" {
 }
 ```
 
-You can provide extra permissions for `all-privileges` or `read-only` roles with `roles_extra_statements`:
+You can provide extra permissions for `all-privileges` or `read-only` roles with `vault_roles_extra_statements`:
 
 ```hcl
 module "my_database" {
