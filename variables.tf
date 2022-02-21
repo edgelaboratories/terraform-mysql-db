@@ -36,7 +36,7 @@ variable "vault_role_default_ttl" {
   default = 3600
 }
 
-variable "roles_extra_statements" {
+variable "vault_roles_extra_statements" {
   type = object({
     all-privileges = optional(list(string)),
     read-only      = optional(list(string)),
