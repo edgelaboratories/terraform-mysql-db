@@ -41,4 +41,6 @@ variable "vault_roles_extra_statements" {
     all-privileges = optional(list(string)),
     read-only      = optional(list(string)),
   })
+
+  default = {}
 }
