@@ -17,7 +17,7 @@ In particular:
 
 ```hcl
 module "my_database" {
-  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.0"
+  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.1"
 
   database = "my-database"
 
