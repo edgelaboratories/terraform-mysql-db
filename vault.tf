@@ -15,7 +15,7 @@ resource "vault_database_secret_backend_role" "this" {
   creation_statements = concat(
     [
       "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';",
-      "GRANT ${each.value} ON ${var.database}.* TO '{{name}}'@'%';",
+      "GRANT ${each.value} ON `${var.database}`.* TO '{{name}}'@'%';",
     ], coalesce(var.vault_roles_extra_statements[each.key], []),
   )
 
