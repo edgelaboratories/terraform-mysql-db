@@ -17,7 +17,7 @@ In particular:
 
 ```hcl
 module "my_database" {
-  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.2"
+  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.3"
 
   database = "my-database"
 
@@ -42,7 +42,7 @@ You can provide extra permissions for `all-privileges` or `read-only` roles with
 
 ```hcl
 module "my_database" {
-  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.2"
+  source = "git@github.com:edgelaboratories/terraform-mysql-db?ref=v0.2.3"
 
   database = "my-database"
 
@@ -53,6 +53,7 @@ module "my_database" {
 
   vault_roles_extra_statements = {
     all-privileges = ["GRANT XA_RECOVER_ADMIN ON *.* TO '{{name}}'@'%';"]
+    read-only      = []
   }
 }
 ```
