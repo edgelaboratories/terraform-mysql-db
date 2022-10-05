@@ -37,10 +37,6 @@ variable "vault_role_default_ttl" {
 }
 
 variable "vault_roles_extra_statements" {
-  type = object({
-    all-privileges = list(string),
-    read-only      = list(string),
-  })
-
+  type    = map(any)
   default = {}
 }
