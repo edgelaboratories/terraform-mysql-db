@@ -27,7 +27,7 @@ module "my_database" {
   # Optional user password. Not required when using Vault roles
   plaintext_password = "a very hard to guess password"
 
-  # The default values
+  # Default values are utf8mb4 and utf8mb4_unicode_ci
   default_character_set = "utf8mb3"
   default_collation     = "utf8mb3_unicode_ci"
 
