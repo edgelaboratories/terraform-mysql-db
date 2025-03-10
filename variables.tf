@@ -15,11 +15,11 @@ variable "plaintext_password" {
 }
 
 variable "default_character_set" {
-  default = "utf8mb4"
+  default = "utf8"
 }
 
 variable "default_collation" {
-  default = "utf8mb4_unicode_ci"
+  default = "utf8_unicode_ci"
 }
 
 variable "vault_backend_path" {
