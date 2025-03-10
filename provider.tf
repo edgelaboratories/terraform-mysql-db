@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     mysql = {
-      source = "winebarrel/mysql"
+      source = "petoju/mysql"
     }
 
     vault = {
