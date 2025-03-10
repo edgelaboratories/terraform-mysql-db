@@ -28,8 +28,8 @@ module "my_database" {
   plaintext_password = "a very hard to guess password"
 
   # The default values
-  default_character_set = "utf8"
-  default_collation     = "utf8_unicode_ci"
+  default_character_set = "utf8mb3"
+  default_collation     = "utf8mb3_unicode_ci"
 
   # Optional
   vault_backend_path       = "mysql/my-cluster"
