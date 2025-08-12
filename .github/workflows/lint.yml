@@ -10,7 +10,7 @@ jobs:
         tofu-versions: [1.9.x]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
